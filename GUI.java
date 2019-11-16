@@ -1,4 +1,3 @@
-package Calculator;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -8,10 +7,9 @@ import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import ECDSA.Calc;
-import ECDSA.Secp256k1;
 import java.awt.event.ActionListener;
 import java.math.BigInteger;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JComboBox;
@@ -330,7 +328,7 @@ public GUI()
 		public void actionPerformed(ActionEvent e) 
 		{						
 				Secp256k1 secp = new Secp256k1();
-				BigInteger[] a = secp.multiply_G(Calc.rand());
+				BigInteger[] a = secp.multiply_G(new BigInteger(256, new Random()));
 				txt[0].setText(a[0].toString(16));
 				txt[1].setText(a[1].toString(16));
 		}
@@ -360,7 +358,7 @@ public GUI()
 		public void actionPerformed(ActionEvent arg0) 
 		{
 				Secp256k1 secp = new Secp256k1();
-				BigInteger[] a = secp.multiply_G(Calc.rand());
+				BigInteger[] a = secp.multiply_G(new BigInteger(256, new Random()));
 				txt[2].setText(a[0].toString(16));
 				txt[3].setText(a[1].toString(16));
 		}
