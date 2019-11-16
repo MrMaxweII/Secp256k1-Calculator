@@ -3,8 +3,10 @@
 A small calculator of operations calculated on the elliptic curve Secp256k1.
 All entered in hexa decimal numbers.
 All calculations are done mod (p).
-Same numbers are marked in color.
-following arithmetic operations are implemented:
+
+#####Same numbers are marked in color.
+
+#### following arithmetic operations are implemented:
 - mod(n) addition, subtraction, multiplication and division of 256bit hexadecimal numbers.  
 - addition and subtraction of points on the curve. 
 - Multiplication with a point on the curve
