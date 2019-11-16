@@ -1,7 +1,7 @@
 #### installation
 This is a Java application, so you need to install Java before you can start the program.
 https://java.com/de/download/
-<br>The "release" folder contains the "Secp256k1_Calc.jar" file.
+<br>The "release" folder contains the "Calc_Secp256k1.jar" file.
 If you have Java installed, you can start it by simply double-clicking.
 
 #### Secp256k1-Calculator
