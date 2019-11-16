@@ -26,20 +26,20 @@ import javax.swing.border.EtchedBorder;
 
 
 /************************************************************************
- *																		*
- *		Kleiner Secp256k1 Calculatur für Testzwecke						*
- *																		*
+ *									*
+ *		Kleiner Secp256k1 Calculatur für Testzwecke		*
+ *									*
  ************************************************************************/
 
 
 
 public class GUI extends JFrame
 {
-	public static final String			progName		= "Secp256k1 Calculator";
-	public static final String			version 		= "V1.0.11";
-	public static final String			autor 			= "Mr. Maxwell";
-	public static final String			eMail			= "Maxwell-KSP@gmx.de";
-	public static final String			myBitcoinAddr 	= "12zeCvN7zbAi3JDQhC8tU3DBm35kDEUNiB";	
+	public static final String	progName	= "Secp256k1 Calculator";
+	public static final String	version 	= "V1.0.11";
+	public static final String	autor 		= "Mr. Maxwell";
+	public static final String	eMail		= "Maxwell-KSP@gmx.de";
+	public static final String	myBitcoinAddr 	= "12zeCvN7zbAi3JDQhC8tU3DBm35kDEUNiB";	
 	public static JLabel lbl_X;
 	public static JLabel lbl_Y;
 	public static JLabel lbl_Z;
@@ -64,7 +64,7 @@ public class GUI extends JFrame
 	public static JComboBox comboBox_2;
 	public static JComboBox comboBox_op;
 	public static JProgressBar progressBar;
-	public static Boolean runProgressBar;				// Zum Beenden des Threades ProgressBar auf false setzten
+	public static Boolean runProgressBar;			// Zum Beenden des Threades ProgressBar auf false setzten
 	public static JLabel lbl_D;
 	public static JTextArea txt_info;
 	public static JTextArea txt_opBeschreibung;
@@ -103,9 +103,9 @@ public static void main(String[] args)
 	
 public GUI()
 {
-	JPanel 		contentPane = new JPanel();
+	JPanel 	contentPane 	= new JPanel();
 	JScrollPane scrollPane 	= new JScrollPane();
-	JPanel 		panel 		= new JPanel();
+	JPanel 	panel 		= new JPanel();
 	panel.setBackground(new Color(245, 245, 245));
 	scrollPane.setViewportView(panel);
 	contentPane.setLayout(new BorderLayout(0, 0));
@@ -121,8 +121,7 @@ public GUI()
 	
 	
 	
-	
-	txt_info = new JTextArea(); 											// Info Feld rechts
+	txt_info = new JTextArea(); 						// Info Feld rechts
 	txt_info.setEditable(false);
 	txt_info.setBounds(787, 198, 372, 79);
 	txt_info.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -131,7 +130,7 @@ public GUI()
 	txt_info.setText("Elliptic curve calculator with the curve: Secp256k1\nAll entered in hexa decimal.");
 	panel.add(txt_info);
 	
-	txt_opBeschreibung = new JTextArea();									// Das untere info Feld rechts mit der Beschreibung des Programmes
+	txt_opBeschreibung = new JTextArea();					// Das untere info Feld rechts mit der Beschreibung des Programmes
 	txt_opBeschreibung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	txt_opBeschreibung.setForeground(new Color(100, 149, 237));
 	txt_opBeschreibung.setFont(new Font("Arial", Font.PLAIN, 13));
@@ -139,9 +138,6 @@ public GUI()
 	txt_opBeschreibung.setBackground( new Color(245, 245, 245));
 	txt_opBeschreibung.setBounds(787, 288, 358, 192);
 	panel.add(txt_opBeschreibung);
-	
-	
-	
 	
 	JLabel lbl_A_B = new JLabel("A                                                               B                                                              C");
 	lbl_A_B.setHorizontalAlignment(SwingConstants.CENTER);
@@ -171,14 +167,12 @@ public GUI()
 	lbl_privKey.setBounds(577, 61, 132, 14);
 	panel.add(lbl_privKey);
 
-	
 	lbl_op = new JLabel("Addition");
 	lbl_op.setForeground(SystemColor.textHighlight);
 	lbl_op.setFont(new Font("Arial", Font.PLAIN, 12));
 	lbl_op.setHorizontalAlignment(SwingConstants.RIGHT);
 	lbl_op.setBounds(273, 41, 132, 18);
 	panel.add(lbl_op);
-
 	
 	lbl_r = new JLabel("r");									
 	lbl_s = new JLabel("s");
@@ -195,9 +189,7 @@ public GUI()
 	
 	
 	
-	
-	
-	for(int i=0;i<19;i++)                 						// Alle Textfelder werden gesetzt
+	for(int i=0;i<19;i++)                 				// Alle Textfelder werden gesetzt
 	{
 		txt[i] = new JTextField();
 		txt[i].setFont(new Font("Courier New", Font.PLAIN, 9));
@@ -211,32 +203,29 @@ public GUI()
 	txt[5].setBounds(815, 110, 330, 20);
 	txt[4].setEditable(false);
 	txt[5].setEditable(false);
-	txt[6].setBounds(415, 220, 330, 20);  //0
-	txt[7].setBounds(415, 250, 330, 20);  //1
-	txt[8].setBounds(415, 300, 330, 20);  //2
-	txt[9].setBounds(415, 330, 330, 20);  //3
-	txt[10].setBounds(415, 380, 330, 20); //4
-	txt[11].setBounds(415, 410, 330, 20); //5
-	txt[12].setBounds(415, 460, 330, 20); //6
-	txt[13].setBounds(415, 490, 330, 20); //7
-	txt[14].setBounds(415, 540, 330, 20); //8
-	txt[15].setBounds(415, 570, 330, 20); //9
-	txt[16].setBounds(415, 620, 330, 20); //10
-	txt[17].setBounds(415, 650, 330, 20); //11
+	txt[6].setBounds(415, 220, 330, 20);  
+	txt[7].setBounds(415, 250, 330, 20);  
+	txt[8].setBounds(415, 300, 330, 20);  
+	txt[9].setBounds(415, 330, 330, 20);  
+	txt[10].setBounds(415, 380, 330, 20); 
+	txt[11].setBounds(415, 410, 330, 20); 
+	txt[12].setBounds(415, 460, 330, 20); 
+	txt[13].setBounds(415, 490, 330, 20);
+	txt[14].setBounds(415, 540, 330, 20);
+	txt[15].setBounds(415, 570, 330, 20);
+	txt[16].setBounds(415, 620, 330, 20); 
+	txt[17].setBounds(415, 650, 330, 20); 
 	txt[18].setBounds(20, 160, 330, 20);
 	txt[18].setVisible(false);
 
-	
-	
-	
 	
 	
 	btn_calc = new JButton("=");
 	btn_calc.setToolTipText("Calculate now!");
 	btn_calc.setBounds(755, 80, 50, 50);
 	btn_calc.setFont(new Font("Arial", Font.BOLD, 28));
-	btn_calc.addActionListener(new ActionListener()                                 // Startet die Rechnung und die ProcessBar jeweils in einem eigenem Thread
-	{																				// (Damit die GUI nicht hängenbleibt in der Berechnungszeit)
+	btn_calc.addActionListener(new ActionListener()         // Startet die Rechnung und die ProcessBar jeweils in einem eigenem Thread
+	{							// (Damit die GUI nicht hängenbleibt in der Berechnungszeit)
 		public void actionPerformed(ActionEvent e) 
 		{
 			Thread t1 = new Thread(new Runnable() 
@@ -436,7 +425,7 @@ public GUI()
 		}
 	});
 	
-	btn_m1 = new JButton("A-->M");                    // Merker Buttons
+	btn_m1 = new JButton("A-->M");                    		// Merker Buttons
 	btn_m1.setToolTipText("save this field in the next free memory");
 	btn_m1.setBounds(300, 135, 50, 20);
 	btn_m1.setMargin(new Insets(0, 0, 0, 0));
@@ -501,7 +490,7 @@ public GUI()
 	
 	
 	
-	comboBox_1.setBackground(Color.LIGHT_GRAY);										// Combo Boxen
+	comboBox_1.setBackground(Color.LIGHT_GRAY);							// Combo Boxen
 	comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Vector", "Scalar"}));
 	panel.add(comboBox_1);
 	
@@ -528,7 +517,7 @@ public GUI()
 	
 	
 	
-	JLabel[] lbl_m = new JLabel[6];															// Alle Beschreibungs Label für die Merker
+	JLabel[] lbl_m = new JLabel[6];						// Alle Beschreibungs Label für die Merker
 	for(int i=0; i<6;i++)
 	{
 		lbl_m[i] = new JLabel("memory field "+i+"  description                                                                                         M"+i);
@@ -540,7 +529,7 @@ public GUI()
 	
 	
 	
-	JTextArea[] txt_beschreibung_m = new JTextArea[6];										// Alle Merker Beschreibungsfelder
+	JTextArea[] txt_beschreibung_m = new JTextArea[6];			// Alle Merker Beschreibungsfelder
 	for(int i=0; i<6;i++)
 	{	
 		txt_beschreibung_m[i] = new JTextArea();
@@ -551,10 +540,9 @@ public GUI()
 	
 	
 	
-	
 																							
 
-	for(int i=0; i<12;i++)																	// Die 12 unteren  "Merker-->"  Buttons werden erstellt
+	for(int i=0; i<12;i++)						// Die 12 unteren  "Merker-->"  Buttons werden erstellt
 	{
 		if(i%2==0) 
 		{
@@ -571,15 +559,14 @@ public GUI()
 		btn_m[i].setMargin(new Insets(0, 0, 0, 0));
 		btn_m[i].setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel.add(btn_m[i]);
-		btn_m[i].addActionListener(new ActionListener() {   public void actionPerformed(ActionEvent e) {  Calculator.saveFromMerkerTo(e);  }});
-		btn_m[i].putClientProperty("int", i); 				// Wird benötigt um die Button Nummer dem ActionEvent mit zu teilen.
+		btn_m[i].addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {  Calculator.saveFromMerkerTo(e);}});
+		btn_m[i].putClientProperty("int", i); 			// Wird benötigt um die Button Nummer dem ActionEvent mit zu teilen.
 	}
 	
 	
 	
 	
-	
-	JButton[] btn_del = new JButton[9];                										// Alle Delite Buttons werden erstellt
+	JButton[] btn_del = new JButton[9];                				// Alle Delite Buttons werden erstellt
 	for(int i=0; i<9;i++)
 	{
 		btn_del[i] = new JButton("x");
@@ -604,7 +591,7 @@ public GUI()
 	
 	
 	
-	JButton btn_delAll = new JButton("DEL");												// Löscht den Kompletten Rechner, alle Felder!
+	JButton btn_delAll = new JButton("DEL");				// Löscht den Kompletten Rechner, alle Felder!
 	btn_delAll.setToolTipText("deletes all fields of the calculator");
 	btn_delAll.setBounds(1095, 11, 50, 20);
 	btn_delAll.addActionListener(new ActionListener() 
@@ -631,12 +618,10 @@ public GUI()
 	progressBar.setEnabled(false);
 	progressBar.setOrientation(SwingConstants.VERTICAL);
 	progressBar.setBackground(new Color(245, 245, 245));
-	panel.add(progressBar);
-
-	
+	panel.add(progressBar);	
 }
 
-
+//------------------------------------------ ENDE GUI --------------------------------------------------------------//
 
 
 
