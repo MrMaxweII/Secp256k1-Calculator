@@ -225,7 +225,8 @@ public static byte[] to_fixLength(byte[] data, int len)
 
 /** Gibt den Punkt Y von X zurück.  
 *	Da es immer zwei gültige Y-Werte zu einem X-Wert gibt ist die Berechnung nur zu 50% richtig. 
-*	Die Information um welchen Punkt es sich handelt kann die Methode nicht "erraten". Daher werden beide möglichen Y-Werte in einem Array zurück gegeben.
+*	Die Information um welchen Punkt es sich handelt kann die Methode nicht "erraten". 
+*	Daher werden beide möglichen Y-Werte in einem Array zurück gegeben.
 *	Y1 = sqrt(x³+7) ,  Y2 = -sqrt(x³+7)  */ 
 public static BigInteger[] y_von_x(BigInteger x)                                
 {                                                        
