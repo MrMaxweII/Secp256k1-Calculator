@@ -4,7 +4,7 @@ https://java.com/de/download/
 <br>The "release" folder contains the "Calc_Secp256k1.jar" file.
 If you have Java installed, you can start it by simply double-clicking.
 
-#### download
+#### download Calc_Secp256k1.jar  V1.01.12
 https://github.com/MrMaxweII/Secp256k1-Calculator/releases/download/V1.0.12/Calc_Secp256k1.jar
 
 #### Secp256k1-Calculator
