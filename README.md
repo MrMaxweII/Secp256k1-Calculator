@@ -13,16 +13,22 @@ A small calculator of operations calculated on the elliptic curve Secp256k1.
 - ECDSA Signature 
 - ECDSA verification
 
-
-
 ![Calc1](https://user-images.githubusercontent.com/34688939/68996640-257c1d00-089d-11ea-960b-4a55e3ef7781.png)
-
-
-
-
-
-
 
 ![Calc2](https://user-images.githubusercontent.com/34688939/68996866-18146200-08a0-11ea-97f6-a23da9794d2a.png)
 
+#### installation
+
+This is a Java application, so you need to install Java before you can start the program.
+https://java.com/de/download/
+The "release" folder contains the "Secp256k1_Calc.jar" file.
+If you have Java installed, you can start it by simply double-clicking.
+
+
+#### Compile the code
+The project was created with eclipse.
+You can either import it into eclipse or use the java source files.
+All required source files are located in the src and in the lib folder.
+
+#### Contact Maxwell-KSP@gmx.de
 please donate 12zeCvN7zbAi3JDQhC8tU3DBm35kDEUNiB
