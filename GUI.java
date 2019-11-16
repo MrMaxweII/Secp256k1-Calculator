@@ -128,7 +128,7 @@ public GUI()
 	txt_info.setText("Elliptic curve calculator with the curve: Secp256k1\nAll entered in hexa decimal.");
 	panel.add(txt_info);
 	
-	JTextField lbl_donate = new JTextField();			// Spenden Feld
+	JTextField lbl_donate = new JTextField();				// Spenden Feld
 	lbl_donate.setBorder(null);
 	lbl_donate.setEditable(false);
 	lbl_donate.setBounds(787, 639, 372, 29);
