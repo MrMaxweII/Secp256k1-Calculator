@@ -23,3 +23,4 @@ following arithmetic operations are implemented:
 
 ![Calc2](https://user-images.githubusercontent.com/34688939/68996866-18146200-08a0-11ea-97f6-a23da9794d2a.png)
 
+please donate 12zeCvN7zbAi3JDQhC8tU3DBm35kDEUNiB
