@@ -5,14 +5,14 @@ import java.util.Arrays;
 
 
 
-	/********************************************************************************************
-	 * 	Secp256k1  V2.3                        								05.11.2019			*       
-	 *	- Multipliziert einen Faktor mit einem Punkt auf der elliptischen Kurve.				*
-	 *	- Generiert den Pub.Key durch die Multiplikation von "G" mit dem Priv.Key.				*
-	 *	- Erzeugt ECDSA Signatur																*	
-	 *	- Verifiziert ECDSA Signatur															*	
-	 *																							* 
-	 ********************************************************************************************/
+	/***********************************************************************************************
+	 * 	Secp256k1  V2.3                        					05.11.2019	*       
+	 *	- Multipliziert einen Faktor mit einem Punkt auf der elliptischen Kurve.		*
+	 *	- Generiert den Pub.Key durch die Multiplikation von "G" mit dem Priv.Key.		*
+	 *	- Erzeugt ECDSA Signatur								*	
+	 *	- Verifiziert ECDSA Signatur								*	
+	 *												* 
+	 ***********************************************************************************************/
 
 
 
@@ -230,7 +230,6 @@ public static byte[] to_fixLength(byte[] data, int len)
 public static BigInteger[] y_von_x(BigInteger x)                                
 {                                                        
 	BigInteger[] erg = new BigInteger[2];
-
 	try
 	{
 		erg[0] = Math_Modulo.sqrt(Math_Modulo.add(Math_Modulo.pow(x,THREE) , SEVEN));	
