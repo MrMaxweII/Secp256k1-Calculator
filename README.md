@@ -15,3 +15,11 @@ following arithmetic operations are implemented:
 
 ![Calc1](https://user-images.githubusercontent.com/34688939/68996640-257c1d00-089d-11ea-960b-4a55e3ef7781.png)
 
+
+
+
+
+
+
+![Calc2](https://user-images.githubusercontent.com/34688939/68996866-18146200-08a0-11ea-97f6-a23da9794d2a.png)
+
