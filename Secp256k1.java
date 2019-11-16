@@ -243,6 +243,4 @@ public static BigInteger[] y_von_x(BigInteger x)
 		return erg;
 	}
 }  
-
-
 }            
