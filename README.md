@@ -1,6 +1,6 @@
 #### Secp256k1-Calculator
 
-A small calculator of operations calculated on the elliptic curve Secp256k1.\n\r
+A small calculator of operations calculated on the elliptic curve Secp256k1.
 All entered in hexa decimal numbers.
 All calculations are done mod (p).
 Same numbers are marked in color.
