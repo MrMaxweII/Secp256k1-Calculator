@@ -3,10 +3,10 @@ import java.math.*;
 
 
 	/****************************************************************************************   
-	 *                                           											*
-	 *   Math_Modulo Class V1.1                           									*
+	 *                                           						*
+	 *   Math_Modulo Class V1.1                           					*
 	 *   Hier werden mathematische Berechnungen definiert  über den Zahlenraum Modulo "p"  	*
-	 *                                         												*
+	 *                                         						*
 	 ****************************************************************************************/
  
 
