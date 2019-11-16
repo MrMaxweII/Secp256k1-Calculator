@@ -1,4 +1,3 @@
-package ECDSA;
 import java.math.*;
 import java.util.Arrays;
 
