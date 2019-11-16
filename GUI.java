@@ -34,7 +34,7 @@ import javax.swing.border.EtchedBorder;
 public class GUI extends JFrame
 {
 	public static final String	progName	= "Secp256k1 Calculator";
-	public static final String	version 	= "V1.0.11";
+	public static final String	version 	= "V1.0.12";
 	public static final String	autor 		= "Mr. Maxwell";
 	public static final String	eMail		= "Maxwell-KSP@gmx.de";
 	public static final String	myBitcoinAddr 	= "12zeCvN7zbAi3JDQhC8tU3DBm35kDEUNiB";	
@@ -127,6 +127,16 @@ public GUI()
 	txt_info.setBackground(new Color(245, 245, 245));
 	txt_info.setText("Elliptic curve calculator with the curve: Secp256k1\nAll entered in hexa decimal.");
 	panel.add(txt_info);
+	
+	JTextField lbl_donate = new JTextField();			// Spenden Feld
+	lbl_donate.setBorder(null);
+	lbl_donate.setEditable(false);
+	lbl_donate.setBounds(787, 639, 372, 29);
+	lbl_donate.setFont(new Font("Arial", Font.PLAIN, 13));
+	lbl_donate.setForeground(new Color(100, 149, 237));
+	lbl_donate.setBackground(new Color(245, 245, 245));
+	lbl_donate.setText("please donate "+myBitcoinAddr);
+	panel.add(lbl_donate);
 	
 	txt_opBeschreibung = new JTextArea();					// Das untere info Feld rechts mit der Beschreibung des Programmes
 	txt_opBeschreibung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
