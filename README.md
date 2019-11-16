@@ -1,10 +1,9 @@
 #### Secp256k1-Calculator
 
 A small calculator of operations calculated on the elliptic curve Secp256k1.
-<p> All entered in hexa decimal numbers.
-<p> All calculations are done mod (p).
-
-<p>Same numbers are marked in color.
+<br> All entered in hexa decimal numbers.
+<br>All calculations are done mod (p).
+<br>Same numbers are marked in color.
 
 #### following arithmetic operations are implemented:
 - mod(n) addition, subtraction, multiplication and division of 256bit hexadecimal numbers.  
