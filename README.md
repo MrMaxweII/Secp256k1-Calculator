@@ -4,6 +4,9 @@ https://java.com/de/download/
 <br>The "release" folder contains the "Calc_Secp256k1.jar" file.
 If you have Java installed, you can start it by simply double-clicking.
 
+#### download
+https://github.com/MrMaxweII/Secp256k1-Calculator/releases/download/V1.0.12/Calc_Secp256k1.jar
+
 #### Secp256k1-Calculator
 A small calculator of operations calculated on the elliptic curve Secp256k1.
 <br> All entered in hexa decimal numbers.
