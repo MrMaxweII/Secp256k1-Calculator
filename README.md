@@ -1,12 +1,10 @@
-#### Secp256k1-Calculator
-
 #### installation
 This is a Java application, so you need to install Java before you can start the program.
 https://java.com/de/download/
 The "release" folder contains the "Secp256k1_Calc.jar" file.
 If you have Java installed, you can start it by simply double-clicking.
 
-
+#### Secp256k1-Calculator
 A small calculator of operations calculated on the elliptic curve Secp256k1.
 <br> All entered in hexa decimal numbers.
 <br>All calculations are done mod (p).
