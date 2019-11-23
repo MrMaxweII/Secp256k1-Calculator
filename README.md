@@ -8,8 +8,8 @@ https://java.com/de/download/
 If you have Java installed, you can start it by simply double-clicking.
 
 #### download Calc_Secp256k1.jar  V1.01.12
-https://github.com/MrMaxweII/Secp256k1-Calculator/releases/download/V1.0.12/Calc_Secp256k1.jar
-<br>SHA256 hash:  e98139012326901715de37a74a46ed4462ca15709234eeb6f72dc1032997ad74
+https://github.com/MrMaxweII/Secp256k1-Calculator/releases/download/V1.0.14/Calc_Secp256k1_V1.0.14.jar
+<br>SHA256 hash:  4aeccf2041197a28155bffee55353d5d42f975948cd37dbeee78fd335898ce06
 
 #### Secp256k1-Calculator
 A small calculator of operations calculated on the elliptic curve Secp256k1.
