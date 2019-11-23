@@ -9,38 +9,38 @@ import javax.swing.JPanel;
 
 
 
-/*******************************************************************************************************
- *																										*
- *		Info: Dieses Dokument enthält zwei Klassen!														*
- *																										*
- *		Diese AnimationECC Klasse erstellt ein animiertes Bild der Kurve Secp256k1						*
- *		Zu erst muss mit dem Konstruktor ein AnimationECC Object erzeugt werden!						*
- *		Dem Konstruktor muss das Panel übergeben werden, auf welches gezeichnet wird.					*
- *																										*
- *		Die SetBounds-Methode skaliert die Position und die Größe des Animationsfensters				*
- *		und speichert alle Punktkoordinaten der Kurve in einem großem Array der Klasse PunktJLabel 		*
- *		Sollte nur einmal bei Programmstart ausgeführt werden, nicht in Schleife! 						*
- *																										*
- *		Die start() Methode startet in einem eigenem Thread die Animation.								*
- *		Die close() Methode	beendet die Animation und den Thread.										*
- *		Achtung: close() Muss am ende ausgeführt werden, sonnst läuft der Thread weiter! 				*
+/***************************************************************************************************************
+ *														*
+ *		Info: Dieses Dokument enthält zwei Klassen!							*
+ *														*
+ *		Diese AnimationECC Klasse erstellt ein animiertes Bild der Kurve Secp256k1.			*
+ *		Zu erst muss mit dem Konstruktor ein AnimationECC Object erzeugt werden!			*
+ *		Dem Konstruktor muss das Panel übergeben werden, auf welches gezeichnet wird.			*
+ *														*
+ *		Die SetBounds-Methode skaliert die Position und die Größe des Animationsfensters		*
+ *		und speichert alle Punktkoordinaten der Kurve in einem großem Array der Klasse PunktJLabel 	*
+ *		Sollte nur einmal bei Programmstart ausgeführt werden, nicht in Schleife! 			*
+ *														*
+ *		Die start() Methode startet in einem eigenem Thread die Animation.				*
+ *		Die close() Methode beendet die Animation und den Thread.					*
+ *		Achtung: close() Muss am ende ausgeführt werden, sonnst läuft der Thread weiter! 		*
  *		close() sollte daher immer in den addShutdownHook() Bereich des Programmes eingefügt werden!	*
- *																										*
- *******************************************************************************************************/
+ *														*
+ ****************************************************************************************************************/
 
 
 
 public class AnimationECC 
 {
-	JPanel panelHaupt;								// Ist das Panel welches vom Konstruktor übergeben wurde und auf Das gezeichnet wird.
-	static boolean run = false;						// damit wird der Thread beendet (muss static sein!!!)
-	static boolean antialiasing;					// Schaltet Antialiasing ein oder aus.
-	int sleepTime = 20;								// Die ZyklusZeit der Animation woraus sich die FPS ergibt.
-	int maxRounds = 100;							// Maximale Wiederholungen der Animation bevor der Thread beendet wird.
-	int[] bounds = new int[4];						// Die Position und die Größe der Animation
-	static int diameter = 2;						// Durchmesser des Punktest
-	int pointCount = 8000;							// Anzahl der Animierten Punkte auf der Kurve (wird zur Laufzeit reduziert)
-	PointJLabel[] point = new PointJLabel[pointCount];	// Das Array der animierten Punkte
+	JPanel panelHaupt;				// Ist das Panel welches vom Konstruktor übergeben wurde und auf Das gezeichnet wird.
+	static boolean run = false;			// damit wird der Thread beendet (muss static sein!!!)
+	static boolean antialiasing;			// Schaltet Antialiasing ein oder aus.
+	int sleepTime = 20;				// Die ZyklusZeit der Animation woraus sich die FPS ergibt.
+	int maxRounds = 100;				// Maximale Wiederholungen der Animation bevor der Thread beendet wird.
+	int[] bounds = new int[4];			// Die Position und die Größe der Animation
+	static int diameter = 2;			// Durchmesser des Punktest
+	int pointCount = 8000;				// Anzahl der Animierten Punkte auf der Kurve (wird zur Laufzeit reduziert)
+	PointJLabel[] point = new PointJLabel[pointCount];// Das Array der animierten Punkte
 	
 	
 	
@@ -73,8 +73,8 @@ public void setBounds(int x, int y, double b, double h)
 		point[i].setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
 		if(i==4000) dx=-1.91293;
 		double y1 = -(Math.sqrt(dx*dx*dx +7.0))*2.0;	
-		if(i<4000) 	point[3999-i].setBoundsPoint((int)((dx+2.5)*20.0 * b/220.0) , (int)(((y1*10.0)+378.0) *h/800.0) , diameter); 
-		else	  	point[i].	  setBoundsPoint((int)((dx+2.5)*20.0 * b/220.0) , (int)(((-y1*10.0)+378.0)*h/800.0) , diameter);
+		if(i<4000) point[3999-i].setBoundsPoint((int)((dx+2.5)*20.0 * b/220.0) , (int)(((y1*10.0)+378.0) *h/800.0) , diameter); 
+		else	   point[i].setBoundsPoint((int)((dx+2.5)*20.0 * b/220.0) , (int)(((-y1*10.0)+378.0)*h/800.0) , diameter);
 		i++;
 	}
 	point = PointsDilutiong(point);
@@ -96,22 +96,22 @@ public void start()
 		public void run() 
 		{
 			run=true;		
-			for(int rounds=0; rounds<maxRounds;rounds++)			// Wiederholung der gesamten Animation bis maxRounds
+			for(int rounds=0; rounds<maxRounds;rounds++)	// Wiederholung der gesamten Animation bis maxRounds
 			{
 				for(int i=0;i<pointCount && run; i++)
 				{					
 					for(int k=0;k<108 && run;k++)
 					{
-							if(i-k<0) 	
-							{
-								point[(i-k)+pointCount].setForeground(new Color(255 , (k+20)*2 ,k*2));	
-								point[(i-k)+pointCount].setDiameter((pointCount-k)/25);
-							}
-							else 		
-							{
-								point[i-k].setForeground(new Color(255 , (k+20)*2 , k*2));	
-								point[(i-k)].setDiameter((pointCount-k)/25);
-							}
+						if(i-k<0) 	
+						{
+							point[(i-k)+pointCount].setForeground(new Color(255 , (k+20)*2 ,k*2));	
+							point[(i-k)+pointCount].setDiameter((pointCount-k)/25);
+						}
+						else 		
+						{
+							point[i-k].setForeground(new Color(255 , (k+20)*2 , k*2));	
+							point[(i-k)].setDiameter((pointCount-k)/25);
+						}
 					}				
 					try {Thread.sleep(sleepTime);} catch (InterruptedException e) {e.printStackTrace();}
 				}
@@ -125,8 +125,8 @@ public void start()
 	
 	
 
-//Löscht zu nah aneinander liegende Punkte in der Kurve und verteilt damit die Punkte gleichmäßiger.
-//Das zurückgegebene Array ist dann natürlich kürzer.
+// Löscht zu nah aneinander liegende Punkte in der Kurve und verteilt damit die Punkte gleichmäßiger.
+// Das zurückgegebene Array ist dann natürlich kürzer.
 private PointJLabel[] PointsDilutiong(PointJLabel[] point)
 {
 	ArrayList<PointJLabel> list = new ArrayList<PointJLabel>();
@@ -167,7 +167,7 @@ public void setAntialiasing(boolean a)
 }
 	
 
-/** Setzt die Sleep Time des Threades in ms.
+/**	Setzt die Sleep Time des Threades in ms.
 	Damit wird die Geschwindigkeit der Animation verändert.
 	Default ist 20ms **/
 public void setSleepTime(int ms)
@@ -176,8 +176,8 @@ public void setSleepTime(int ms)
 }
 
 
-/** Setzt die maximalen Wiederholungen der Animation bevor der Thread beendet wird.
-	Wirkt als zusätzliche Sicherheit zum beenden des Threads
+/** 	Setzt die maximalen Wiederholungen der Animation bevor der Thread beendet wird.
+	Wirkt als zusätzliche Sicherheit zum beenden des Threads.
 	Default ist 100 Wiederholungen **/
 public void setMaxRound(int count)
 {
@@ -195,7 +195,7 @@ public void printCurv()
 }
 
 
-/**	Beendet die Animation und den Thread
+/**	Beendet die Animation und den Thread.
 	Muss am ende ausgefÜhrt werden sonnst läuft der Thread weiter! */
 public void close()
 {
@@ -212,14 +212,14 @@ public void close()
 
 
 
-/***********************************************************************************************************
- *																											*
- *		Diese PointJLabel Klasse ist eine Subklasse von JLabel												*
- *		Sie wird genau wie JLabel verwendet, enthält jedoch die unteren zusätzlichen Atribute und Methoden.	*
- *		PointJLabel wird verwendet um einen einzelnen Punkt auf der Kurve zu speichern und zu zeichnen.		*
- *		Dazu wird ein Array aus PointJLabel Objekten erzeugt welches dann das Bild darstellt.				*
- *																											*
- ***********************************************************************************************************/
+/****************************************************************************************************************
+ *														*
+ *	Diese PointJLabel Klasse ist eine Subklasse von JLabel.							*
+ *	Sie wird genau wie JLabel verwendet, enthält jedoch die unteren zusätzlichen Atribute und Methoden.	*
+ *	PointJLabel wird verwendet um einen einzelnen Punkt auf der Kurve zu speichern und zu zeichnen.		*
+ *	Dazu wird ein Array aus PointJLabel Objekten erzeugt welches dann das Bild darstellt.			*
+ *														*
+ ****************************************************************************************************************/
 
 
 
@@ -236,9 +236,9 @@ class PointJLabel extends JLabel
 		if(AnimationECC.antialiasing)                    // Antialiasing
 		{
 			Graphics2D graphics2D = (Graphics2D) g;	
-		    graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-		    RenderingHints.VALUE_ANTIALIAS_ON); 
-		    graphics2D.fillOval(x,y, d, d);
+		    	graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+		    	RenderingHints.VALUE_ANTIALIAS_ON); 
+		    	graphics2D.fillOval(x,y, d, d);
 		}
 		else g.fillOval(x,y, d, d);
 	}
