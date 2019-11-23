@@ -8,10 +8,10 @@ import javax.swing.JComponent;
 
 
 /************************************************************************
- *																		*
- *		Kleiner Secp256k1 Calculatur für Testzwecke						*
- *		Hier werden alle Berechnungen durchgeführt						*
- *																		*
+ *									*
+ *		Kleiner Secp256k1 Calculatur für Testzwecke		*
+ *		Hier werden alle Berechnungen durchgeführt		*
+ *									*
  ************************************************************************/
 
 
@@ -21,10 +21,10 @@ public class Calculator
 
 	
 	
-private static int color = 0;						// Farbe der doppelten Elemente
+private static int color = 0;				// Farbe der doppelten Elemente
 private static Color[] txt_color = new Color[19];	// Zugeordnete Hintergrundfarbe jeden Textfeldes
 public static boolean run_findEquals = true;		// Zum Beenden des Thread´s "FindEquals"
-public static boolean run_calc = false;				// Verhindert das doppelte starten von Calc.
+public static boolean run_calc = false;			// Verhindert das doppelte starten von Calc.
 
 
 
@@ -32,14 +32,14 @@ public static boolean run_calc = false;				// Verhindert das doppelte starten vo
 // Die Informations-Meldungen werden entspechend auf der GUI platziert
 // Rückgabe ist Integer was wie folgt identifiziert wird:
 // 0 = ungültige Operation
-// 1 = scalare Addition 		( 2 Zahlen werden normal addiert)
-// 2 = scalare Subtraktion 		( 2 Zahlen werden normal Subrahier)
+// 1 = scalare Addition 	( 2 Zahlen werden normal addiert)
+// 2 = scalare Subtraktion 	( 2 Zahlen werden normal Subrahier)
 // 3 = scalare Multiplikation 	( 2 Zahlen werden normal Multipliziert)
-// 4 = scalare Division		 	( 2 Zahlen werden normal Dividiert)
-// 5 = Addition 		auf der elliptischen Kurve ( Vektor + Vektor)
+// 4 = scalare Division		( 2 Zahlen werden normal Dividiert)
+// 5 = Addition 	auf der elliptischen Kurve ( Vektor + Vektor)
 // 6 = Subtraktion  	auf der elliptischen Kurve ( Vektor - Vektor)
 // 7 = Multiplikation  	auf der elliptischen Kurve ( Skalar * Vektor)
-// 8 = Divison  		auf der elliptischen Kurve ( Vektor / Skalar)
+// 8 = Divison  	auf der elliptischen Kurve ( Vektor / Skalar)
 public static int parseOP()
 {
 	int a = GUI.comboBox_1.getSelectedIndex();
@@ -64,17 +64,17 @@ public static int parseOP()
 	String txt_2 = " elliptic curve "+op_txt+"\n\n "+op_txt+" of a "+a_txt+" with a "+b_txt+"\n on the elliptic curve Secp256k1\n f(x) = (A "+GUI.comboBox_op.getSelectedItem()+" B)";
 	String txt_3 = " ECDSA Signatur\n\n h = hash of the document to be signed\n k = random number\n B = the private key with which you want to sign \n G = generator point \n\n Signature r,s\n\n f(r) = k \u2022 G \n f(s) = (h + r \u2022 B)/k";
 	String txt_4 = " ECDSA verification\n\n h  = hash of the document to be verified\n r,s = the signature\n B  = the public key with which you want to verified \n G  = generator point \n\n h/s \u2022 G + r/s \u2022 B = r(x)";
-	if(a==1 && b==1 && op==0) { GUI.lbl_op.setText("scalar  addition"); 		GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_1); return 1;}
-	if(a==1 && b==1 && op==1) { GUI.lbl_op.setText("scalar  subtraction"); 		GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_1); return 2;}
-	if(a==1 && b==1 && op==2) { GUI.lbl_op.setText("scalar  multiplication");	GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_1); return 3;}
-	if(a==1 && b==1 && op==3) { GUI.lbl_op.setText("scalar  division");			GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_1); return 4;}
-	if(a==0 && b==0 && op==0) { GUI.lbl_op.setText("ECC addition"); 			GUI.txt[5].setVisible(true);  GUI.txt_opBeschreibung.setText(txt_2); return 5;}
-	if(a==0 && b==0 && op==1) { GUI.lbl_op.setText("ECC subtraktion"); 			GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_2);  return 6;}
-	if(a==1 && b==0 && op==2) { GUI.lbl_op.setText("ECC multiplication");		GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_2);  return 7;}
-	if(a==0 && b==1 && op==2) { GUI.lbl_op.setText("ECC multiplikation");		GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_2);  return 7;}
-	if(a==0 && b==1 && op==3) { GUI.lbl_op.setText("ECC division");				GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_2);  return 8;}
-	if(a==0 && b==1 && op==4) { GUI.lbl_op.setText("signature");				GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_3);  return 9;}
-	if(a==0 && b==0 && op==5) { GUI.lbl_op.setText("verify");					GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_4); return 10;}
+	if(a==1 && b==1 && op==0) { GUI.lbl_op.setText("scalar  addition"); 	GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_1); return 1;}
+	if(a==1 && b==1 && op==1) { GUI.lbl_op.setText("scalar  subtraction"); 	GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_1); return 2;}
+	if(a==1 && b==1 && op==2) { GUI.lbl_op.setText("scalar  multiplication");GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_1); return 3;}
+	if(a==1 && b==1 && op==3) { GUI.lbl_op.setText("scalar  division");	GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_1); return 4;}
+	if(a==0 && b==0 && op==0) { GUI.lbl_op.setText("ECC addition"); 	GUI.txt[5].setVisible(true);  GUI.txt_opBeschreibung.setText(txt_2); return 5;}
+	if(a==0 && b==0 && op==1) { GUI.lbl_op.setText("ECC subtraktion"); 	GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_2);  return 6;}
+	if(a==1 && b==0 && op==2) { GUI.lbl_op.setText("ECC multiplication");	GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_2);  return 7;}
+	if(a==0 && b==1 && op==2) { GUI.lbl_op.setText("ECC multiplikation");	GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_2);  return 7;}
+	if(a==0 && b==1 && op==3) { GUI.lbl_op.setText("ECC division");		GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_2);  return 8;}
+	if(a==0 && b==1 && op==4) { GUI.lbl_op.setText("signature");		GUI.txt[5].setVisible(true); GUI.txt_opBeschreibung.setText(txt_3);  return 9;}
+	if(a==0 && b==0 && op==5) { GUI.lbl_op.setText("verify");		GUI.txt[5].setVisible(false); GUI.txt_opBeschreibung.setText(txt_4); return 10;}
 	GUI.lbl_op.setText("No possible operation!"); 
 	{
 		GUI.lbl_op.setForeground(Color.RED); GUI.btn_calc.setEnabled(false); 
@@ -86,7 +86,7 @@ public static int parseOP()
 	
 	
 
-// subrahiert a-b  
+// subtrahiert a-b  
 private static BigInteger sub(BigInteger a, BigInteger b)
 {
 	return  a.add(Secp256k1.ORDNUNG.subtract(b)).mod(Secp256k1.ORDNUNG);
@@ -110,11 +110,11 @@ public static void calc() throws Exception
 	BigInteger[] po2 = new BigInteger[2];	
 	switch(op) 
 	{
-		case 1: GUI.txt[4].setText(		new BigInteger(GUI.txt[0].getText(),16).add	(	new BigInteger(GUI.txt[2].getText(),16)).mod(Secp256k1.ORDNUNG).toString(16)); break;
-		case 2: GUI.txt[4].setText(sub(	new BigInteger(GUI.txt[0].getText(),16), 		new BigInteger(GUI.txt[2].getText(),16)).toString(16)); break;
-		case 3: GUI.txt[4].setText(		new BigInteger(GUI.txt[0].getText(),16).multiply(new BigInteger(GUI.txt[2].getText(),16)).mod(Secp256k1.ORDNUNG).toString(16)); break;
-		case 4: GUI.txt[4].setText(div(	new BigInteger(GUI.txt[0].getText(),16), 		new BigInteger(GUI.txt[2].getText(),16)).toString(16)); break;
-		case 5:  // Addition elliptic curve
+		case 1: GUI.txt[4].setText(	new BigInteger(GUI.txt[0].getText(),16).add	(new BigInteger(GUI.txt[2].getText(),16)).mod(Secp256k1.ORDNUNG).toString(16)); break;
+		case 2: GUI.txt[4].setText(sub(	new BigInteger(GUI.txt[0].getText(),16), 	 new BigInteger(GUI.txt[2].getText(),16)).toString(16)); break;
+		case 3: GUI.txt[4].setText(	new BigInteger(GUI.txt[0].getText(),16).multiply(new BigInteger(GUI.txt[2].getText(),16)).mod(Secp256k1.ORDNUNG).toString(16)); break;
+		case 4: GUI.txt[4].setText(div(	new BigInteger(GUI.txt[0].getText(),16), 	 new BigInteger(GUI.txt[2].getText(),16)).toString(16)); break;
+		case 5:  	// Addition elliptic curve
 		{
 			po1[0] = new BigInteger(GUI.txt[0].getText(),16);
 			po1[1] = new BigInteger(GUI.txt[1].getText(),16);
@@ -125,7 +125,7 @@ public static void calc() throws Exception
 			GUI.txt[5].setText(erg[1].toString(16));
 			break;
 		}
-		case 6: // Suptraktion elliptic curve
+		case 6: 	// Suptraktion elliptic curve
 		{
 			po1[0] = new BigInteger(GUI.txt[0].getText(),16);
 			po1[1] = new BigInteger(GUI.txt[1].getText(),16);
@@ -136,7 +136,7 @@ public static void calc() throws Exception
 			GUI.txt[5].setText(erg[1].toString(16));
 			break;
 		}
-		case 7: // Multiplikation elliptic curve
+		case 7: 	// Multiplikation elliptic curve
 		{
 			BigInteger fac;			
 			if(GUI.comboBox_1.getSelectedIndex()==1)
@@ -156,7 +156,7 @@ public static void calc() throws Exception
 			GUI.txt[5].setText(erg[1].toString(16));	
 			break;
 			}
-		case 8: // Division elliptic curve
+		case 8: 	// Division elliptic curve
 		{
 			BigInteger div = new BigInteger(GUI.txt[2].getText(),16);
 			po1[0] = new BigInteger(GUI.txt[0].getText(),16);
@@ -219,7 +219,7 @@ public static void saveToNextMerker(String a, String b)
 public static void saveFromMerkerTo(ActionEvent e)
 {							
 	int nr =  (int) ((JComponent) e.getSource()).getClientProperty("int");  
-	if(nr%2==0) 		// die Merker auf der linken Seite
+	if(nr%2==0) 	// die Merker auf der linken Seite
 	{
 		if(GUI.comboBox_op.getSelectedIndex()!=5)				
 		{
@@ -228,7 +228,7 @@ public static void saveFromMerkerTo(ActionEvent e)
 			if(isEmty(nr+7)) GUI.comboBox_1.setSelectedIndex(1);
 			else 			 GUI.comboBox_1.setSelectedIndex(0);
 		}
-		else			// Bei Auswahl von Verify
+		else	// Bei Auswahl von Verify
 		{
 			GUI.txt[1].setText(GUI.txt[nr+6].getText());
 			GUI.txt[18].setText(GUI.txt[nr+7].getText());
@@ -239,7 +239,7 @@ public static void saveFromMerkerTo(ActionEvent e)
 		GUI.txt[2].setText(GUI.txt[nr+5].getText());
 		GUI.txt[3].setText(GUI.txt[nr+6].getText());
 		if(isEmty(nr+6)) GUI.comboBox_2.setSelectedIndex(1);
-		else 			 GUI.comboBox_2.setSelectedIndex(0);
+		else 	 GUI.comboBox_2.setSelectedIndex(0);
 	}
 }
 
@@ -285,7 +285,7 @@ public static void findEquals()
 					color++;
 				}
 				for(int i=0;i<19;i++) {GUI.txt[i].setBackground(txt_color[i]);}					
-				if(GUI.txt[0].getText().equals("color")) printAllColor();      //Testmethode die bei der Eingabe von "color" im ersten Feld alle Farben anzeigt.
+				if(GUI.txt[0].getText().equals("color")) printAllColor();     
 			}				
 			System.out.println("Thread findEquals beendet");
 		}
@@ -343,7 +343,7 @@ private static void printAllColor()
 
 
 
-// die der Eingabebereich der GUI wird für die Berechnung der Sigantur angepasst 
+// der Eingabebereich der GUI wird für die Berechnung der Sigantur angepasst 
 public static void setOP_Sig()
 {
 	GUI.comboBox_op.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -373,7 +373,7 @@ public static void setOP_Sig()
 
 
 
-//die der Eingabebereich der GUI wird f�r die Berechnung der Verifikation angepasst 
+// der Eingabebereich der GUI wird für die Berechnung der Verifikation angepasst 
 public static void setOP_ver()
 {
 	GUI.comboBox_op.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -406,7 +406,7 @@ public static void setOP_ver()
 
 
 
-//die der Eingabebereich der GUI wird f�r die Berechnung zur�ck auf Calculator gesetzt 
+// der Eingabebereich der GUI wird für die Berechnung zurück auf Calculator gesetzt 
 public static void setOP_calc()
 {
 	GUI.comboBox_op.setFont(new Font("Tahoma", Font.PLAIN, 30));
