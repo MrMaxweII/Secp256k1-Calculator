@@ -11,6 +11,9 @@ If you have Java installed, you can start it by simply double-clicking.
 https://github.com/MrMaxweII/Secp256k1-Calculator/releases/download/V1.0.14/Calc_Secp256k1_V1.0.14.jar
 <br>SHA256 hash:  4aeccf2041197a28155bffee55353d5d42f975948cd37dbeee78fd335898ce06
 
+#### Start the program
+The "Calc_Secp256k1.jar" file is located in the "release" folder. You can start this under Windows if Java is installed simply by double-clicking. On Linux, type in the console: "java -jar Calc_Secp256k1_v1.0.14.jar"
+
 #### Secp256k1-Calculator
 A small calculator of operations calculated on the elliptic curve Secp256k1.
 <br> All entered in hexa decimal numbers.
