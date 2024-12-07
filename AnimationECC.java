@@ -10,22 +10,20 @@ import javax.swing.JPanel;
 
 
 /***************************************************************************************************************
- *														*
- *		Info: Dieses Dokument enthält zwei Klassen!							*
- *														*
- *		Diese AnimationECC Klasse erstellt ein animiertes Bild der Kurve Secp256k1.			*
- *		Zu erst muss mit dem Konstruktor ein AnimationECC Object erzeugt werden!			*
- *		Dem Konstruktor muss das Panel übergeben werden, auf welches gezeichnet wird.			*
- *														*
- *		Die SetBounds-Methode skaliert die Position und die Größe des Animationsfensters		*
- *		und speichert alle Punktkoordinaten der Kurve in einem großem Array der Klasse PunktJLabel 	*
- *		Sollte nur einmal bei Programmstart ausgeführt werden, nicht in Schleife! 			*
- *														*
- *		Die start() Methode startet in einem eigenem Thread die Animation.				*
- *		Die close() Methode beendet die Animation und den Thread.					*
- *		Achtung: close() Muss am ende ausgeführt werden, sonnst läuft der Thread weiter! 		*
- *		close() sollte daher immer in den addShutdownHook() Bereich des Programmes eingefügt werden!	*
- *														*
+ *		Info: Dieses Dokument enthält zwei Klassen!																*
+ *																												*
+ *		Diese AnimationECC Klasse erstellt ein animiertes Bild der Kurve Secp256k1.								*
+ *		Zu erst muss mit dem Konstruktor ein AnimationECC Object erzeugt werden!								*
+ *		Dem Konstruktor muss das Panel übergeben werden, auf welches gezeichnet wird.							*
+ *																												*
+ *		Die SetBounds-Methode skaliert die Position und die Größe des Animationsfensters						*
+ *		und speichert alle Punktkoordinaten der Kurve in einem großem Array der Klasse PunktJLabel 				*
+ *		Sollte nur einmal bei Programmstart ausgeführt werden, nicht in Schleife! 								*
+ *																												*
+ *		Die start() Methode startet in einem eigenem Thread die Animation.										*
+ *		Die close() Methode beendet die Animation und den Thread.												*
+ *		Achtung: close() Muss am ende ausgeführt werden, sonnst läuft der Thread weiter! 						*
+ *		close() sollte daher immer in den addShutdownHook() Bereich des Programmes eingefügt werden!			*
  ****************************************************************************************************************/
 
 
@@ -102,15 +100,32 @@ public void start()
 				{					
 					for(int k=0;k<108 && run;k++)
 					{
-						if(i-k<0) 	
+						if(Config.darkAnimation)
 						{
-							point[(i-k)+pointCount].setForeground(new Color(255 , (k+20)*2 ,k*2));	
-							point[(i-k)+pointCount].setDiameter((pointCount-k)/25);
+							if(i-k<0) 	
+							{
+								point[(i-k)+pointCount].setForeground(new Color(255-k*2, 50 ,50));	
+								point[(i-k)+pointCount].setDiameter((pointCount-k)/25);
+							}
+							else 		
+							{
+								point[i-k].setForeground(new Color(255-k*2 , 50 , 50));	
+								point[(i-k)].setDiameter((pointCount-k)/25);
+							}
+							
 						}
-						else 		
+						else
 						{
-							point[i-k].setForeground(new Color(255 , (k+20)*2 , k*2));	
-							point[(i-k)].setDiameter((pointCount-k)/25);
+							if(i-k<0) 	
+							{
+								point[(i-k)+pointCount].setForeground(new Color(255 , (k+20)*2 ,k*2));	
+								point[(i-k)+pointCount].setDiameter((pointCount-k)/25);
+							}
+							else 		
+							{
+								point[i-k].setForeground(new Color(255 , (k+20)*2 , k*2));	
+								point[(i-k)].setDiameter((pointCount-k)/25);
+							}
 						}
 					}				
 					try {Thread.sleep(sleepTime);} catch (InterruptedException e) {e.printStackTrace();}
@@ -190,7 +205,7 @@ public void printCurv()
 {
 	for(int i=0;i<pointCount; i++)
 	{
-		point[i].setForeground(new Color(100,100,100));
+		point[i].setForeground(Color.CYAN);
 	}
 }
 
@@ -202,7 +217,7 @@ public void close()
 	run = false;
 	for(int i=0;i<pointCount; i++)
 	{
-		point[i].setForeground(new Color(255,255,230));
+		point[i].setForeground(GUI.color0);
 	}
 }
 }
@@ -213,12 +228,10 @@ public void close()
 
 
 /****************************************************************************************************************
- *														*
- *	Diese PointJLabel Klasse ist eine Subklasse von JLabel.							*
- *	Sie wird genau wie JLabel verwendet, enthält jedoch die unteren zusätzlichen Atribute und Methoden.	*
- *	PointJLabel wird verwendet um einen einzelnen Punkt auf der Kurve zu speichern und zu zeichnen.		*
- *	Dazu wird ein Array aus PointJLabel Objekten erzeugt welches dann das Bild darstellt.			*
- *														*
+ *	Diese PointJLabel Klasse ist eine Subklasse von JLabel.														*
+ *	Sie wird genau wie JLabel verwendet, enthält jedoch die unteren zusätzlichen Atribute und Methoden.			*
+ *	PointJLabel wird verwendet um einen einzelnen Punkt auf der Kurve zu speichern und zu zeichnen.				*
+ *	Dazu wird ein Array aus PointJLabel Objekten erzeugt welches dann das Bild darstellt.						*
  ****************************************************************************************************************/
 
 

@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
 import java.awt.event.ActionListener;
 import java.math.BigInteger;
 import java.util.Random;
@@ -20,13 +22,12 @@ import java.awt.Dimension;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 
 
 /************************************************************************
- *									*
- *		Kleiner Secp256k1 Calculatur für Testzwecke		*
- *									*
+ *		Kleiner Secp256k1 Calculatur für Testzwecke						*
  ************************************************************************/
 
 
@@ -34,7 +35,7 @@ import javax.swing.border.EtchedBorder;
 public class GUI extends JFrame
 {
 	public static final String	progName	= "Secp256k1 Calculator";
-	public static final String	version 	= "V1.0.14";
+	public static final String	version 	= "V1.0.15";
 	public static final String	autor 		= "Mr. Maxwell";
 	public static final String	eMail		= "Maxwell-KSP@gmx.de";
 	public static final String	myBitcoinAddr 	= "12zeCvN7zbAi3JDQhC8tU3DBm35kDEUNiB";	
@@ -59,15 +60,19 @@ public class GUI extends JFrame
 	public static JButton btn_m1;
 	public static JButton btn_m4;
 	public static JButton[] btn_m = new JButton[12]; 	// Die 12 unteren Merker Buttons
-	public static JComboBox comboBox_1;	
-	public static JComboBox comboBox_2;
-	public static JComboBox comboBox_op;
+	public static JComboBox<String> comboBox_1;	
+	public static JComboBox<String> comboBox_2;
+	public static JComboBox<String> comboBox_op;
 	public static JLabel lbl_D;
 	public static JTextArea txt_info;
 	public static JTextArea txt_opBeschreibung;
 	public static AnimationECC animation;				
+	public static Color color0;					// Haupt-Hintergrund
+	public static Color color1;					// Schriftfarbe Feldbeschreibung und Button-Schriftfarbe
+	public static Color color2;					// Textfelder Hintergrund
+	public static Color color3;					// Textfelder Schriftfarbe
+	public static Color color4;					// Rahmenfarbe-Textfelder, und Button-Hintergrund
 	
-		
 	
 public static void main(String[] args)
 {
@@ -99,10 +104,22 @@ public static void main(String[] args)
 	
 public GUI()
 {
+	Config.loadConfig("color.cfg");
+	color0 = Color.decode(Config.color0);		// Haupt-Hintergrund
+	color1 = Color.decode(Config.color1);		// Schriftfarbe Feldbeschreibung und Button-Schriftfarbe
+	color2 = Color.decode(Config.color2);		// Textfelder Hintergrund
+	color3 = Color.decode(Config.color3);		// Textfelder Schriftfarbe
+	color4 = Color.decode(Config.color4);		// Rahmenfarbe-Textfelder, und Button-Hintergrund
+	
+	UIManager.put("Button.background",   color4);
+	UIManager.put("Button.foreground",   color1);
+	UIManager.put("ComboBox.background", color4);
+	UIManager.put("ComboBox.foreground", color1);
+	
 	JPanel 	contentPane = new JPanel();
 	JScrollPane scrollPane 	= new JScrollPane();
 	panel 	= new JPanel();
-	panel.setBackground(new Color(245, 245, 245));
+	panel.setBackground(color0);
 	scrollPane.setViewportView(panel);
 	contentPane.setLayout(new BorderLayout(0, 0));
 	setContentPane(contentPane);
@@ -120,7 +137,7 @@ public GUI()
 	txt_info.setBounds(871, 265, 265, 65);
 	txt_info.setFont(new Font("Arial", Font.PLAIN, 16));
 	txt_info.setForeground(new Color(100, 149, 237));
-	txt_info.setBackground(new Color(245, 245, 245));
+	txt_info.setBackground(color0);
 	txt_info.setText("Elliptic curve calculator \r\nwith the curve: Secp256k1\r\nAll entered in hexa decimal.");
 	panel.add(txt_info);
 	
@@ -130,7 +147,7 @@ public GUI()
 	lbl_donate.setBounds(787, 639, 372, 29);
 	lbl_donate.setFont(new Font("Arial", Font.PLAIN, 13));
 	lbl_donate.setForeground(new Color(100, 149, 237));
-	lbl_donate.setBackground(new Color(245, 245, 245));
+	lbl_donate.setBackground(color0);
 	lbl_donate.setText("please donate "+myBitcoinAddr);
 	panel.add(lbl_donate);
 	
@@ -139,7 +156,7 @@ public GUI()
 	txt_opBeschreibung.setForeground(new Color(100, 149, 237));
 	txt_opBeschreibung.setFont(new Font("Arial", Font.PLAIN, 13));
 	txt_opBeschreibung.setEditable(false);
-	txt_opBeschreibung.setBackground( new Color(245, 245, 245));
+	txt_opBeschreibung.setBackground(color0);
 	txt_opBeschreibung.setBounds(787, 453, 358, 175);
 	panel.add(txt_opBeschreibung);
 	
@@ -197,6 +214,8 @@ public GUI()
 	{
 		txt[i] = new JTextField();
 		txt[i].setFont(new Font("Courier New", Font.PLAIN, 9));
+		txt[i].setForeground(color3);	
+		txt[i].setBorder(new LineBorder(color4, 1));
 		panel.add(txt[i]);
 	}
 	txt[0].setBounds(20, 80, 330, 20);
@@ -331,7 +350,8 @@ public GUI()
 	btn_rand1.setToolTipText("generates a random point or a random number");
 	btn_rand1.setBounds(80, 55, 50, 20);
 	btn_rand1.setMargin(new Insets(0,0,0,0));
-	btn_rand1.addActionListener(new ActionListener() {
+	btn_rand1.addActionListener(new ActionListener() 
+	{
 		public void actionPerformed(ActionEvent e) 
 		{						
 			Secp256k1 secp = new Secp256k1();
@@ -374,7 +394,7 @@ public GUI()
 	btn_rand2.setFont(new Font("Tahoma", Font.BOLD, 12));
 	panel.add(btn_rand2);
 	
-	comboBox_2 = new JComboBox();
+	comboBox_2 = new JComboBox<String>();
 	comboBox_2.setToolTipText("Choose whether you want to enter a vector or a scalar.");
 	comboBox_2.setBounds(415, 20, 200, 20);
 	comboBox_2.addActionListener(new ActionListener() 
@@ -400,7 +420,7 @@ public GUI()
 		}
 	});
 	
-	comboBox_1 = new JComboBox();
+	comboBox_1 = new JComboBox<String>();
 	comboBox_1.setToolTipText("Choose whether you want to enter a vector or a scalar.");
 	comboBox_1.setBounds(20, 20, 200, 20);
 	comboBox_1.addActionListener(new ActionListener() 
@@ -490,22 +510,18 @@ public GUI()
 	btn_m4.setFont(new Font("Tahoma", Font.BOLD, 12));
 	panel.add(btn_m4);
 
-	
-	
-	comboBox_1.setBackground(Color.LIGHT_GRAY);					// Combo Boxen
-	comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Vector", "Scalar"}));
+		
+	comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Vector", "Scalar"}));
 	panel.add(comboBox_1);
 	
-	comboBox_2.setBackground(Color.LIGHT_GRAY);
-	comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Vector", "Scalar"}));
+	comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Vector", "Scalar"}));
 	panel.add(comboBox_2);
 	
-	comboBox_op = new JComboBox();
+	comboBox_op = new JComboBox<String>();
 	comboBox_op.setToolTipText("Selection of the ECC operation");
 	comboBox_op.setBounds(358, 80, 50, 50);
 	comboBox_op.setFont(new Font("Tahoma", Font.PLAIN, 30));
-	comboBox_op.setBackground(Color.LIGHT_GRAY);
-	comboBox_op.setModel(new DefaultComboBoxModel(new String[] {"+", "-", "\u2022", ":", "sig", "ver"}));
+	comboBox_op.setModel(new DefaultComboBoxModel<String>(new String[] {"+", "-", "\u2022", ":", "sig", "ver"}));
 	comboBox_op.addActionListener(new ActionListener() 
 	{
 		public void actionPerformed(ActionEvent e) 
@@ -519,11 +535,12 @@ public GUI()
 	panel.add(comboBox_op);
 	
 		
-	JLabel[] lbl_m = new JLabel[6];					// Alle Beschreibungs Label für die Merker
+	JLabel[] lbl_m = new JLabel[6];						// Alle Beschreibungs Label für die Merker
 	for(int i=0; i<6;i++)
 	{
 		lbl_m[i] = new JLabel("memory field "+i+"  description                                                                                         M"+i);
 		lbl_m[i].setFont(new Font("Arial", Font.PLAIN, 11));
+		lbl_m[i].setForeground(color1);
 		lbl_m[i].setBounds(20, 201+i*80, 482, 20);
 		panel.add(lbl_m[i]);
 	}
@@ -536,13 +553,15 @@ public GUI()
 		txt_beschreibung_m[i] = new JTextArea();
 		txt_beschreibung_m[i].setToolTipText("editable field for the description of the memory");
 		txt_beschreibung_m[i].setBounds(20, 220+i*80, 390, 50);
+		txt_beschreibung_m[i].setBackground(color2);
+		txt_beschreibung_m[i].setForeground(color3);
 		panel.add(txt_beschreibung_m[i]);
 	}
 	
 	
 																							
 
-	for(int i=0; i<12;i++)						// Die 12 unteren  "Merker-->"  Buttons werden erstellt
+	for(int i=0; i<12;i++)									// Die 12 unteren  "Merker-->"  Buttons werden erstellt
 	{
 		if(i%2==0) 
 		{
@@ -612,6 +631,7 @@ public GUI()
 	animation.setBounds(750, 131, 170, 340);
 	animation.setMaxRound(20);
 	animation.setSleepTime(10);
-	animation.setAntialiasing(true);	
+	animation.setAntialiasing(true);
+	animation.close();
 }
 }

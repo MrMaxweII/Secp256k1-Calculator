@@ -8,10 +8,8 @@ import javax.swing.JComponent;
 
 
 /************************************************************************
- *									*
  *		Kleiner Secp256k1 Calculatur für Testzwecke		*
  *		Hier werden alle Berechnungen durchgeführt		*
- *									*
  ************************************************************************/
 
 
@@ -21,10 +19,10 @@ public class Calculator
 
 	
 	
-private static int color = 0;				// Farbe der doppelten Elemente
+private static int color = 0;						// Farbe der doppelten Elemente
 private static Color[] txt_color = new Color[19];	// Zugeordnete Hintergrundfarbe jeden Textfeldes
 public static boolean run_findEquals = true;		// Zum Beenden des Thread´s "FindEquals"
-public static boolean run_calc = false;			// Verhindert das doppelte starten von Calc.
+public static boolean run_calc = false;				// Verhindert das doppelte starten von Calc.
 
 
 
@@ -267,9 +265,13 @@ public static void findEquals()
 			{				
 				try {Thread.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}					
 				color =0;
-				for(int i=0;i<19;i++) txt_color[i] = Color.white;
-				txt_color[4] = new Color(245, 245, 245);
-				txt_color[5] = new Color(245, 245, 245);
+				for(int i=0;i<19;i++) txt_color[i] = GUI.color2;
+//				txt_color[4] = new Color(245, 245, 245);
+//				txt_color[5] = new Color(245, 245, 245);
+				
+				txt_color[4] = GUI.color2;
+				txt_color[5] = GUI.color2;
+				
 				String[] text = new String[19];					
 				for(int i=0;i<19;i++) {text[i] = GUI.txt[i].getText();}
 				for(int i=0;i<19;i++)
@@ -299,25 +301,50 @@ public static void findEquals()
 private static Color nextColor()
 {
 	Color[] c = new Color[19];
-	c[3]  = Color.decode("#fbeeee");
-	c[6]  = Color.decode("#F8ECE0");
-	c[9]  = Color.decode("#F7F8E0");
-	c[12] = Color.decode("#ECF8E0");
-	c[15] = Color.decode("#E0F8E0");
-	c[1]  = Color.decode("#E0F2F7");
-	c[4]  = Color.decode("#E0E6F8");
-	c[7]  = Color.decode("#E6E0F8");
-	c[10] = Color.decode("#ffd6cc");
-	c[13] = Color.decode("#ebe0cc");
-	c[16] = Color.decode("#F8E0E6");
-	c[2]  = Color.decode("#cce0ff");
-	c[5]  = Color.decode("#F5A9A9");
-	c[8]  = Color.decode("#F5D0A9");
-	c[11] = Color.decode("#F2F5A9");
-	c[14] = Color.decode("#D0F5A9");
-	c[17] = Color.decode("#A9F5A9");
-	c[0]  = Color.decode("#A9F5D0");
-	c[18] = Color.decode("#ffcccc"); 
+	if(Config.darkAnimation)
+	{
+		c[3]  = Color.decode("#5b4e4e");
+		c[6]  = Color.decode("#584C40");
+		c[9]  = Color.decode("#575840");
+		c[12] = Color.decode("#4C5840");
+		c[15] = Color.decode("#405840");
+		c[1]  = Color.decode("#405257");
+		c[4]  = Color.decode("#404658");
+		c[7]  = Color.decode("#464058");
+		c[10] = Color.decode("#5f362c");
+		c[13] = Color.decode("#4b402c");
+		c[16] = Color.decode("#884036");
+		c[2]  = Color.decode("#2c405f");
+		c[5]  = Color.decode("#550909");
+		c[8]  = Color.decode("#553009");
+		c[11] = Color.decode("#525509");
+		c[14] = Color.decode("#305509");
+		c[17] = Color.decode("#095509");
+		c[0]  = Color.decode("#095530");
+		c[18] = Color.decode("#5f2c2c"); 
+	}
+	else
+	{	
+		c[3]  = Color.decode("#Fbeeee");
+		c[6]  = Color.decode("#F8ECE0");
+		c[9]  = Color.decode("#F7F8E0");
+		c[12] = Color.decode("#ECF8E0");
+		c[15] = Color.decode("#E0F8E0");
+		c[1]  = Color.decode("#E0F2F7");
+		c[4]  = Color.decode("#E0E6F8");
+		c[7]  = Color.decode("#E6E0F8");
+		c[10] = Color.decode("#ffd6cc");
+		c[13] = Color.decode("#ebe0cc");
+		c[16] = Color.decode("#F8E0E6");
+		c[2]  = Color.decode("#cce0ff");
+		c[5]  = Color.decode("#F5A9A9");
+		c[8]  = Color.decode("#F5D0A9");
+		c[11] = Color.decode("#F2F5A9");
+		c[14] = Color.decode("#D0F5A9");
+		c[17] = Color.decode("#A9F5A9");
+		c[0]  = Color.decode("#A9F5D0");
+		c[18] = Color.decode("#ffcccc"); 
+	}
 	return c[color];
 }
 
