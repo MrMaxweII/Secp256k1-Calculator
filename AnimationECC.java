@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 
 /***************************************************************************************************************
+ *		V1.1 																				vom 07.12.2024		*
  *		Info: Dieses Dokument enthält zwei Klassen!																*
  *																												*
  *		Diese AnimationECC Klasse erstellt ein animiertes Bild der Kurve Secp256k1.								*
@@ -30,15 +31,17 @@ import javax.swing.JPanel;
 
 public class AnimationECC 
 {
-	JPanel panelHaupt;				// Ist das Panel welches vom Konstruktor übergeben wurde und auf Das gezeichnet wird.
-	static boolean run = false;			// damit wird der Thread beendet (muss static sein!!!)
-	static boolean antialiasing;			// Schaltet Antialiasing ein oder aus.
-	int sleepTime = 20;				// Die ZyklusZeit der Animation woraus sich die FPS ergibt.
-	int maxRounds = 100;				// Maximale Wiederholungen der Animation bevor der Thread beendet wird.
-	int[] bounds = new int[4];			// Die Position und die Größe der Animation
-	static int diameter = 2;			// Durchmesser des Punktest
-	int pointCount = 8000;				// Anzahl der Animierten Punkte auf der Kurve (wird zur Laufzeit reduziert)
-	PointJLabel[] point = new PointJLabel[pointCount];// Das Array der animierten Punkte
+	JPanel panelHaupt;									// Ist das Panel welches vom Konstruktor übergeben wurde und auf Das gezeichnet wird.
+	static boolean run 				= false;			// damit wird der Thread beendet (muss static sein!!!)
+	static boolean antialiasing;						// Schaltet Antialiasing ein oder aus.
+	int sleepTime 					= 20;				// Die ZyklusZeit der Animation woraus sich die FPS ergibt.
+	int maxRounds 					= 100;				// Maximale Wiederholungen der Animation bevor der Thread beendet wird.
+	int[] bounds 					= new int[4];		// Die Position und die Größe der Animation
+	static int diameter 			= 2;				// Durchmesser des Punktest
+	int pointCount 					= 8000;				// Anzahl der Animierten Punkte auf der Kurve (wird zur Laufzeit reduziert)
+	Color color0					= Color.white;		// Default Hintergrundfarbe
+	Color color1					= Color.red;		// Default Animationsfarbe
+	PointJLabel[] point = new PointJLabel[pointCount];	// Das Array der animierten Punkte
 	
 	
 	
@@ -54,6 +57,24 @@ public AnimationECC(JPanel panelHaupt)
 	}
 }
 	
+
+
+//Setzt die Hintergrundfarbe der Animation
+public void setBackground(Color c)
+{
+	color0 = c;
+}
+
+// Setzt die Hauptfarbe der Amination
+public void setForeground(Color c)
+{
+	color1 = c;
+}
+
+
+
+
+
 
 
 /**	Skalliert die Position und die Größe des Animationsfensters
@@ -79,7 +100,7 @@ public void setBounds(int x, int y, double b, double h)
 	for(int j=0;j<pointCount; j++)	// Fügt schon mal alle Punkte den Panel zu
 	{
 		panelHaupt.add(point[j]);
-		point[j].setForeground(new Color(255,255,255));
+		point[j].setForeground(color0);
 	}
 }	
 
@@ -94,40 +115,39 @@ public void start()
 		public void run() 
 		{
 			run=true;		
+			double dr = 1 * (color1.getRed()   - color0.getRed());		// delta rot
+			double dg = 1 * (color1.getGreen() - color0.getGreen());		// delta grün
+			double db = 1 * (color1.getBlue()  - color0.getBlue());		// delta blau
+			double ir = dr/108;									// ingrement rot
+			double ig = dg/108;									// ingrement grün
+			double ib = db/108;									// ingrement blau
+			// System.out.println("ingremente: "+ir+"  "+ig+"  "+ib); // Zum Debuggen
 			for(int rounds=0; rounds<maxRounds;rounds++)	// Wiederholung der gesamten Animation bis maxRounds
 			{
-				for(int i=0;i<pointCount && run; i++)
+				for(int i=0;i<pointCount && run; i++)		// pointCount = 200
 				{					
 					for(int k=0;k<108 && run;k++)
 					{
-						if(Config.darkAnimation)
+						int rot 	= (int) (color1.getRed()-k*ir);
+						int gruen 	= (int) (color1.getGreen()-k*ig);
+						int blau	= (int) (color1.getBlue()-k*ib);
+						if(rot<0) 		rot = 0;
+						if(rot>255) 	rot = 255;
+						if(gruen<0) 	gruen = 0;
+						if(gruen>255) 	gruen = 255;
+						if(blau<0) 		blau = 0;
+						if(blau>255) 	blau = 255;
+						if(i-k<0) 	
 						{
-							if(i-k<0) 	
-							{
-								point[(i-k)+pointCount].setForeground(new Color(255-k*2, 50 ,50));	
-								point[(i-k)+pointCount].setDiameter((pointCount-k)/25);
-							}
-							else 		
-							{
-								point[i-k].setForeground(new Color(255-k*2 , 50 , 50));	
-								point[(i-k)].setDiameter((pointCount-k)/25);
-							}
-							
+							point[(i-k)+pointCount].setForeground(new Color(rot,gruen,blau));	
+							point[(i-k)+pointCount].setDiameter((pointCount-k)/25);
 						}
-						else
+						else 		
 						{
-							if(i-k<0) 	
-							{
-								point[(i-k)+pointCount].setForeground(new Color(255 , (k+20)*2 ,k*2));	
-								point[(i-k)+pointCount].setDiameter((pointCount-k)/25);
-							}
-							else 		
-							{
-								point[i-k].setForeground(new Color(255 , (k+20)*2 , k*2));	
-								point[(i-k)].setDiameter((pointCount-k)/25);
-							}
+							point[i-k].setForeground(new Color(rot,gruen,blau));	
+							point[(i-k)].setDiameter((pointCount-k)/25);
 						}
-					}				
+					}
 					try {Thread.sleep(sleepTime);} catch (InterruptedException e) {e.printStackTrace();}
 				}
 			}
@@ -217,7 +237,7 @@ public void close()
 	run = false;
 	for(int i=0;i<pointCount; i++)
 	{
-		point[i].setForeground(GUI.color0);
+		point[i].setForeground(color0);
 	}
 }
 }

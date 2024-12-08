@@ -53,6 +53,7 @@ public class Config
 		public static String 	color2;		// Textfelder Hintergrund                                  
 		public static String 	color3;		// Textfelder Schriftfarbe                                 
 		public static String 	color4;		// Rahmenfarbe-Textfelder, und Button-Hintergrund          
+		public static String 	color5;		// Fordergrundfarbe Animation          
 		public static boolean 	darkAnimation = false;
 
 
@@ -68,13 +69,13 @@ public class Config
 		{
 			Properties p = new Properties();
 			p.load(new FileInputStream(fileName));
-			darkAnimation	= Boolean.valueOf(	p.getProperty("darkAnimation","false"));		// Wenn true, wird Animation dunkel gezeichnet
+			darkAnimation	= Boolean.valueOf(	p.getProperty("darkAnimation","false"));	// Wenn true, wird Animation dunkel gezeichnet
 			color0		= 					p.getProperty("background"		,"#f5f5f5");	// Haupt-Hintergrund                                    
 			color1		= 					p.getProperty("btn_foreground"	,"#606060"); 	// Schriftfarbe Feldbeschreibung und Button-Schriftfarbe
 			color2		= 					p.getProperty("txt_background"	,"#ffffff");  	// Textfelder Hintergrund                               
 			color3		= 					p.getProperty("txt_foreground"	,"#000000");  	// Textfelder Schriftfarbe                              
 			color4		= 					p.getProperty("btn_background"	,"#ccddee");  	// Rahmenfarbe-Textfelder, und Button-Hintergrund 
-	
+			color5		= 					p.getProperty("animation_color"	,"#ff0000");  	// Fordergrundfarbe Animation, default = rot
 		} 
 		catch (Exception e) 				// Wenn Config datei nicht existiert dann werden auch die default Werte genommen
 		{			  
@@ -83,7 +84,9 @@ public class Config
 			color1	= "#606060";
 			color2	= "#ffffff";
 			color3	= "#000000";
-			color4	= "#ccddee";    
+			color4	= "#ccddee"; 
+			color5	= "#ff0000";    
+
 		}
 	}
 }

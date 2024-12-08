@@ -35,7 +35,7 @@ import javax.swing.border.LineBorder;
 public class GUI extends JFrame
 {
 	public static final String	progName	= "Secp256k1 Calculator";
-	public static final String	version 	= "V1.0.15";
+	public static final String	version 	= "V1.0.16";
 	public static final String	autor 		= "Mr. Maxwell";
 	public static final String	eMail		= "Maxwell-KSP@gmx.de";
 	public static final String	myBitcoinAddr 	= "12zeCvN7zbAi3JDQhC8tU3DBm35kDEUNiB";	
@@ -72,7 +72,8 @@ public class GUI extends JFrame
 	public static Color color2;					// Textfelder Hintergrund
 	public static Color color3;					// Textfelder Schriftfarbe
 	public static Color color4;					// Rahmenfarbe-Textfelder, und Button-Hintergrund
-	
+	public static Color color5;					// Farbe Animation
+
 	
 public static void main(String[] args)
 {
@@ -110,6 +111,8 @@ public GUI()
 	color2 = Color.decode(Config.color2);		// Textfelder Hintergrund
 	color3 = Color.decode(Config.color3);		// Textfelder Schriftfarbe
 	color4 = Color.decode(Config.color4);		// Rahmenfarbe-Textfelder, und Button-Hintergrund
+	color5 = Color.decode(Config.color5);		// Farbe Animation
+
 	
 	UIManager.put("Button.background",   color4);
 	UIManager.put("Button.foreground",   color1);
@@ -260,7 +263,7 @@ public GUI()
 					{
 						txt[4].setText("Math. Error");
 						txt[5].setText("Math. Error");
-						animation.close();	
+						animation.close();
 						Calculator.run_calc=false;
 						e.printStackTrace();
 					}
@@ -629,6 +632,8 @@ public GUI()
 	animation = new AnimationECC(panel);
 	animation.setDiameter(6);
 	animation.setBounds(750, 131, 170, 340);
+	animation.setBackground(color0);
+	animation.setForeground(color5);
 	animation.setMaxRound(20);
 	animation.setSleepTime(10);
 	animation.setAntialiasing(true);
